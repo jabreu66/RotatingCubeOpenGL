@@ -1,20 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
 project(PhysicsSimulation)
 
-# Set the C++ standard
+# Specify C++ standard
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+# Ensure consistent runtime libraries
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-# Include directories
+
+# Include directories for headers
 include_directories(include)
-
-# Link directories
-link_directories(lib)
 
 # Add source files
 add_executable(PhysicsSimulation src/main.cpp src/glad.c)
 
-# Link libraries
-target_link_libraries(PhysicsSimulation glfw3 opengl32)
+# Add library search paths
+link_directories(${CMAKE_SOURCE_DIR}/lib)
 
-# Specify console application
-set(CMAKE_EXE_LINKER_FLAGS "-Wl,-subsystem,console")
+# Link GLFW and OpenGL libraries
+target_link_libraries(PhysicsSimulation "C:/Users/jfire/Desktop/Physics Simulation (C++)/lib/glfw3.lib" opengl32)
