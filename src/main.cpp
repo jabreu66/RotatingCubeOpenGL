@@ -132,7 +132,7 @@ int main()
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-    std::string vertexShader = 
+    /*std::string vertexShader = 
     "#version 330 core\n"
     "\n"
     "layout(location = 0) in vec4 position;"
@@ -147,7 +147,33 @@ int main()
     "void main()"
     "{\n"
     " color = vec4(0.0, 0.0, 1.0, 1.0);\n" //r,g,b, and a (alpha)
+    "}\n";*/
+
+    std::string vertexShader = 
+    "#version 330 core\n"
+    "layout(location = 0) in vec4 position;\n"
+    "out vec2 uv;\n"
+    "void main()\n"
+    "{\n"
+    "    gl_Position = position;\n"
+    "    uv = position.xy + vec2(0.5);\n"
     "}\n";
+
+    std::string fragmentShader = 
+    "#version 330 core\n"
+    "in vec2 uv;\n" // input variable, represents the value calculated in the vertex shader
+    "layout(location = 0) out vec4 color;\n"
+    "void main()\n"
+    "{\n"
+    "    float pixelSize = 128.0;\n"
+    "    vec2 uvPixelated = floor(uv * pixelSize) / pixelSize;\n"
+    "    float gradient = uvPixelated.y;\n"
+    "    float levels = 16.0;\n"
+    "    gradient = floor(gradient * levels) / levels;\n"
+    "    color = vec4(0.0, gradient, gradient, 1.0);\n"
+    "}\n";
+
+
 
     unsigned int shader = CreateShader(vertexShader, fragmentShader);
     glUseProgram(shader);
