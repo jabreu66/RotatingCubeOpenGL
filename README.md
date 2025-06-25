@@ -3,7 +3,7 @@
 A bite-sized C++/OpenGL project that renders a **spinning, pixel-shaded cube**.  
 Great as a template for learning modern OpenGL (3.3 Core) with **GLFW**, **GLAD**, and **GLM**.
 
-## ✨ Features
+## Features
 
 | What | Why it matters |
 |------|----------------|
@@ -15,7 +15,7 @@ Great as a template for learning modern OpenGL (3.3 Core) with **GLFW**, **GLAD*
 
 ---
 
-## 🛠️ Requirements
+## Requirements
 
 | Dependency | Tested version | Notes |
 |------------|---------------|-------|
